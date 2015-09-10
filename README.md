@@ -10,11 +10,11 @@ A `Dockerfile` based off of [`azavea/scala`](https://quay.io/repository/azavea/s
 First, build the container:
 
 ```bash
-$ docker build -t azavea/spark .
+$ docker build -t quay.io/azavea/spark:latest .
 ```
 
 Now you can run a container with `spark-shell` as the command to interact with Spark:
 
 ```bash
-$ docker run -ti --rm azavea/spark spark-shell
+$ docker run -ti --rm quay.io/azavea/spark:latest spark-shell
 ```
