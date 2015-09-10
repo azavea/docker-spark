@@ -1,8 +1,8 @@
 FROM quay.io/azavea/scala:0.1.0
 
-MAINTAINER Azavea
+MAINTAINER Azavea <systems@azavea.com>
 
-ENV SPARK_VERSION 1.3.1
+ENV SPARK_VERSION 1.5.0
 ENV SPARK_HOME /opt/spark
 ENV SPARK_CONF_DIR ${SPARK_HOME}/conf
 ENV PATH=${PATH}:${SPARK_HOME}/bin
