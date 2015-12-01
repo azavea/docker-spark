@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Bump Spark version to 1.5.2.
+
 ## 0.2.0
 
 - Bump Spark version to 1.5.0.
