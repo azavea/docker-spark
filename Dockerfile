@@ -1,4 +1,4 @@
-FROM quay.io/azavea/scala:0.1.0
+FROM quay.io/azavea/scala:2.10.5
 
 MAINTAINER Azavea <systems@azavea.com>
 
