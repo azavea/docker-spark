@@ -3,7 +3,7 @@
 [![Docker Repository on Quay.io](https://quay.io/repository/azavea/spark/status "Docker Repository on Quay.io")](https://quay.io/repository/azavea/spark)
 [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/azavea/docker-spark/blob/develop/LICENSE)
 
-A `Dockerfile` based off of [`azavea/scala`](https://quay.io/repository/azavea/scala) that installs Apache Spark.
+A `Dockerfile` based off of [`openjdk:8-jre`](https://hub.docker.com/_/openjdk/) that installs Apache Spark.
 
 ## Usage
 
