@@ -1,3 +1,11 @@
+## 1.6.2
+
+### `17ceac8`
+
+- Update Spark to version 1.6.2.
+- Update underlying JRE to version 8.
+- Add Spark user and default work directory.
+
 ## 1.6.1
 
 ### `0569ca6`
