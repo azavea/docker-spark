@@ -1,12 +1,17 @@
-FROM quay.io/azavea/scala:2.10.6
+FROM openjdk:8-jre
 
-MAINTAINER Azavea <systems@azavea.com>
+ENV SPARK_VERSION 1.6.2
+ENV PATH=${PATH}:/usr/lib/spark/sbin:/usr/lib/spark/bin
 
-ENV SPARK_VERSION 1.6.1
-ENV SPARK_HOME /opt/spark
-ENV SPARK_CONF_DIR ${SPARK_HOME}/conf
-ENV PATH=${PATH}:${SPARK_HOME}/bin
+RUN \
+      addgroup --system spark \
+      && adduser --disabled-password --system --group \
+                 --home /var/lib/spark --shell /usr/sbin/nologin \
+                 spark \
+      && mkdir -p /usr/lib/spark \
+      && wget -qO- http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz \
+      | tar -xzC /usr/lib/spark --strip-components=1 \
+      && chown -R spark:spark /usr/lib/spark
 
-RUN mkdir -p ${SPARK_HOME} \
-  && wget -qO- http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz \
-  | tar -xzC ${SPARK_HOME} --strip-components=1
+USER spark
+WORKDIR /usr/lib/spark
