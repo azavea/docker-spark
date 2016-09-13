@@ -1,3 +1,10 @@
+## 2.0.0
+
+### `0b0bc78`
+
+- Update Spark to version 2.0.0.
+- Update pre-built version of Hadoop to 2.7.
+
 ## 1.6.2
 
 ### `17ceac8`
