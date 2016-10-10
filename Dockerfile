@@ -1,6 +1,6 @@
 FROM openjdk:8-jre
 
-ENV SPARK_VERSION 2.0.0
+ENV SPARK_VERSION 2.0.1
 ENV HADOOP_VERSION 2.7
 ENV PATH=${PATH}:/usr/lib/spark/sbin:/usr/lib/spark/bin
 
