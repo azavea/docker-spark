@@ -1,3 +1,9 @@
+## 2.1.0
+
+### `451fdda`
+
+- Update Spark to version 2.1.0.
+
 ## 2.0.2
 
 ### `0dc5f03`
