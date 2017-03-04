@@ -1,20 +1,21 @@
 # docker-spark
 
-[![Docker Repository on Quay.io](https://quay.io/repository/azavea/spark/status "Docker Repository on Quay.io")](https://quay.io/repository/azavea/spark)
-[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/azavea/docker-spark/blob/develop/LICENSE)
-
-A `Dockerfile` based off of [`openjdk:8-jre`](https://hub.docker.com/_/openjdk/) that installs Apache Spark.
+This repository contains a `Dockerfile` template for an image designed to support Apache Spark on the OpenJDK JRE.
 
 ## Usage
 
-First, build the container:
+### Template Variables
+
+- `SPARK_VERSION` - Spark version
+- `JRE_VERSION` - OpenJDK JRE version
+- `HADOOP_VERSION` - Hadoop version
+
+### Testing
+
+An example of how to use `cibuild` to build and test an image:
 
 ```bash
-$ docker build -t quay.io/azavea/spark:latest .
-```
-
-Now you can run a container with `spark-shell` as the command to interact with Spark:
-
-```bash
-$ docker run -ti --rm quay.io/azavea/spark:latest spark-shell
+$ CI=1 VERSION=2.1 SPARK_VERSION=2.1.0 \
+  JRE_VERSION=8 HADOOP_VERSION=2.7 \
+  ./scripts/cibuild
 ```
