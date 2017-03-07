@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+set -u
+
+if [[ -n "${CI}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+"Usage: $(basename "$0")
+Build container images from templates.
+"
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        sed -e "s/%%JRE_VERSION%%/$JRE_VERSION/" \
+            -e "s/%%SPARK_VERSION%%/$SPARK_VERSION/" \
+            -e "s/%%HADOOP_VERSION%%/$HADOOP_VERSION/" \
+            "Dockerfile.template" > Dockerfile
+
+        docker \
+            build -t "quay.io/azavea/spark:$VERSION-hadoop$HADOOP_VERSION" .
+
+        scripts/test
+
+        docker images
+    fi
+fi

@@ -1,7 +1,9 @@
-FROM openjdk:8-jre
+FROM openjdk:%%JRE_VERSION%%-jre
 
-ENV SPARK_VERSION 2.1.0
-ENV HADOOP_VERSION 2.7
+MAINTAINER Azavea <systems@azavea.com>
+
+ENV SPARK_VERSION %%SPARK_VERSION%%
+ENV HADOOP_VERSION %%HADOOP_VERSION%%
 ENV PATH=${PATH}:/usr/lib/spark/sbin:/usr/lib/spark/bin
 
 RUN \

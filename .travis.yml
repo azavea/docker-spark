@@ -1,24 +1,16 @@
-sudo: required
-
 language: bash
+services: docker
 
-services:
-  - docker
-
-install:
-  - docker build -t quay.io/azavea/spark:${TRAVIS_COMMIT:0:7} .
+env:
+  - VERSION=2.0 SPARK_VERSION=2.0.2 JRE_VERSION=8 HADOOP_VERSION=2.7
+  - VERSION=2.1 SPARK_VERSION=2.1.0 JRE_VERSION=8 HADOOP_VERSION=2.7
 
 script:
-  - docker run --rm quay.io/azavea/spark:${TRAVIS_COMMIT:0:7} spark-shell
+  - ./scripts/cibuild
 
-after_success:
-  - docker login -e . -p "${QUAY_PASSWORD}" -u "${QUAY_USER}" quay.io
-  - if [ "${TRAVIS_BRANCH}" == "develop" ]; then
-    docker push quay.io/azavea/spark:${TRAVIS_COMMIT:0:7};
-    docker tag quay.io/azavea/spark:${TRAVIS_COMMIT:0:7} quay.io/azavea/spark:latest;
-    docker push quay.io/azavea/spark:latest;
-    fi
-  - if [ -n "${TRAVIS_TAG}" ]; then
-    docker tag quay.io/azavea/spark:${TRAVIS_COMMIT:0:7} quay.io/azavea/spark:${TRAVIS_TAG};
-    docker push quay.io/azavea/spark:${TRAVIS_TAG};
-    fi
+deploy:
+  - provider: script
+    script: "scripts/cipublish"
+    on:
+      repo: azavea/docker-spark
+      branch: master
